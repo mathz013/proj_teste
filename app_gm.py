@@ -48,6 +48,10 @@ if enviar:
             break
 
     if not erro_encontrado:
-        # O value_input_option='USER_ENTERED' garante que números virem números no Sheets
-        planilha.append_row(valores, value_input_option='USER_ENTERED')
-        st.success(f"✅ Registro de {status_texto} enviado com sucesso!")
+    # Este comentário e o IF abaixo estão no mesmo nível
+        if planilha is not None:
+        # A linha abaixo precisa de UM TAB de distância do IF acima
+            planilha.append_row(valores, value_input_option='USER_ENTERED')
+            st.success(f"✅ Registro de {status_texto} enviado com sucesso!")
+        else:
+            st.error("❌ Não foi possível salvar porque a conexão falhou!")
